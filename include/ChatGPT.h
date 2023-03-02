@@ -8,6 +8,5 @@ namespace OpenAI {
     private:
         std::string m_token;
         std::string m_link;
-        nlohmann::json m_json;
     };
 }
