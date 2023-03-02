@@ -13,8 +13,7 @@ OpenAI::ChatCompletion OpenAI::ChatGPT::sendRequest(const std::string& role,cons
                     "  \"model\": \"gpt-3.5-turbo\",\n"
                     "  \"messages\": [{\"role\": \""+role+"\", \"content\": \""+content+"\"}]\n"
                     "}";
-    auto response = cpr::Post(cpr::Url{m_link},cpr::Body{json},cpr::Bearer({m_token}),
-                             cpr::Header{{"Content-Type","application/json"}}).text;
+    auto response = cpr::Post(cpr::Url{m_link},cpr::Body{json},cpr::Bearer({m_token}),cpr::Header{{"Content-Type","application/json"}}).text;
     OpenAI::ChatCompletion chatCompletion;
     nlohmann::json j=nlohmann::json::parse(response);
     if(!j.contains("error")) {
