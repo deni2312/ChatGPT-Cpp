@@ -1,6 +1,6 @@
 #include <iostream>
-#include "include/ChatGPT.h"
-#include "include/Error.h"
+#include "ChatGPT/include/ChatGPT.h"
+#include "ChatGPT/include/Error.h"
 
 int main(int args,char** argv){
     //API token as argument
