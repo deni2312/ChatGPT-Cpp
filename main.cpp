@@ -8,7 +8,7 @@ int main(int args,char** argv){
     try {
         //type of user and the message to ask
         auto response = chatGpt.sendRequest("user","Give me 5 words");
-        //Iterate all answers
+        //Iterate over all answers
         for(const auto& choice:response.choices){
             std::cout<<choice.message.content;
         }
