@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.8.0)
 project(ChatGPT VERSION 0.1.0)
-add_executable(ChatGPT main.cpp)
+add_executable(ChatGPT main.cpp src/ChatGPT.cpp src/Error.cpp)
 find_package(nlohmann_json CONFIG REQUIRED)
 find_package(cpr CONFIG REQUIRED)
 target_link_libraries(ChatGPT PRIVATE nlohmann_json::nlohmann_json cpr::cpr)
