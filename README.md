@@ -10,8 +10,6 @@
 
 ## Getting started.
 
-<h2> Steps </h2>
-
 This API is tested with C++ 17, on linux g++ and on Visual Studio 2022.
 
 * Install dependencies with VCPKG
@@ -40,8 +38,6 @@ cmake --build .
 ./ChatGPT
 ```  
 Change vcpkgdirectory with the relative or absolute path of vcpkg
-
-## Writing your first bot
 
 <h3>Ask something!</h3>
 
