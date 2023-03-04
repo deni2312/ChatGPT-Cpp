@@ -47,8 +47,8 @@ Change vcpkgdirectory with the relative or absolute path of vcpkg
 
 ```c++
 #include <iostream>
-#include "include/ChatGPT.h"
-#include "include/Error.h"
+#include "ChatGPT/include/ChatGPT.h"
+#include "ChatGPT/include/Error.h"
 
 int main(int args,char** argv){
     //API token as argument
@@ -60,6 +60,13 @@ int main(int args,char** argv){
         for(const auto& choice:response.choices){
             std::cout<<choice.message.content;
         }
+    }catch(OpenAI::Error& e){
+        //JSON error returned by the server
+        std::cout<<e.what();
+    }
+    try {
+        auto response = chatGpt.askWhisper("sound.mp3");
+        std::cout<<response;
     }catch(OpenAI::Error& e){
         //JSON error returned by the server
         std::cout<<e.what();
