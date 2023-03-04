@@ -7,7 +7,7 @@ int main(int args,char** argv){
     OpenAI::ChatGPT chatGpt{argv[1]};
     try {
         //type of user and the message to ask
-        auto response = chatGpt.sendRequest("user","Give me 5 words");
+        auto response = chatGpt.askChatGPT("user","Give me 5 words");
         //Iterate all answers
         for(const auto& choice:response.choices){
             std::cout<<choice.message.content;
