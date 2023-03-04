@@ -16,7 +16,6 @@ int main(int args,char** argv){
         //JSON error returned by the server
         std::cout<<e.what();
     }
-
     try {
         auto response = chatGpt.askWhisper("sound.mp3");
         std::cout<<response;
