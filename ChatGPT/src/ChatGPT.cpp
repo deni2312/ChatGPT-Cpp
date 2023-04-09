@@ -15,16 +15,18 @@ OpenAI::ChatCompletion OpenAI::ChatGPT::askChatGPT(const std::string& role, cons
                     "}";
     auto response = cpr::Post(cpr::Url{m_link},cpr::Body{json},cpr::Bearer({m_token}),cpr::Header{{"Content-Type","application/json"}}).text;
     OpenAI::ChatCompletion chatCompletion;
+    nlohmann::json j;
     try {
-        nlohmann::json j = nlohmann::json::parse(response);
-        if(!j.contains("error")) {
-            from_json(j, chatCompletion);
-        }else{
-            throw OpenAI::Error{j.dump()};
-        }
+        j = nlohmann::json::parse(response);
     }catch(std::exception& e){
         std::cerr<<"Error: "+response;
     }
+    if(!j.contains("error")) {
+        from_json(j, chatCompletion);
+    }else{
+        throw OpenAI::Error{j.dump()};
+    }
+
     return chatCompletion;
 }
 
@@ -42,13 +44,14 @@ std::string OpenAI::ChatGPT::askWhisper(const std::string &audio_path) {
                                 cpr::Header{{"Authorization", auth_token},
                                             {"Content-Type", "multipart/form-data"}},
                                 multipart_data).text;
+    nlohmann::json j;
     try {
-        nlohmann::json j = nlohmann::json::parse(r);
-        if(j.contains("error")) {
-            throw OpenAI::Error{j.dump()};
-        }
-        return j["text"];
+        j = nlohmann::json::parse(r);
     }catch(std::exception& e){
         std::cerr<<"Error: "+r;
     }
+    if(j.contains("error")) {
+        throw OpenAI::Error{j.dump()};
+    }
+    return j["text"];
 }
